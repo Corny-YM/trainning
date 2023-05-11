@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Input from "./Input";
+import { useNavigate } from "react-router-dom";
 
 const Task = ({ task, index, dispatch }) => {
   const [isSelected, setIsSelected] = useState(false);
+  const navigate = useNavigate();
 
   const handleUpdateDoneTodo = () => {
     dispatch({
@@ -12,17 +14,24 @@ const Task = ({ task, index, dispatch }) => {
         isDone: task.isDone ? false : true,
       },
     });
+    navigate("/");
   };
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.stopPropagation();
     dispatch({
       type: "DELETE_TODO",
       payload: index,
     });
+    navigate("/");
   };
 
+  const handleClickTask = () => {
+    navigate(`/todo/${index}`)
+  }
+
   return (
-    <div className="display-flex padding-8">
+    <div onClick={handleClickTask} className="display-flex padding-8">
       <input
         checked={task?.isDone}
         onChange={handleUpdateDoneTodo}

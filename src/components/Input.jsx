@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Input = ({ name, index, setIsSelected, dispatch }) => {
   const [valueInput, setValueInput] = useState(name || "");
+  const navigate = useNavigate();
 
   const handleKeyDown = (e) => {
     if (e.key == "Enter" && valueInput.trim() != "") {
@@ -22,6 +24,7 @@ const Input = ({ name, index, setIsSelected, dispatch }) => {
           },
         });
         setIsSelected(false);
+        navigate("/");
       }
       setValueInput("");
     }

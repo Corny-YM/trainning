@@ -1,20 +1,16 @@
-import { useContext } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Task from "./components/Task";
-import Input from "./components/Input";
-import { AppContext } from "./context/AppContext";
+import Todo from "./components/Todo";
+import TodoItem from "./components/TodoItem";
 
 function App() {
-  const { todo, dispatch } = useContext(AppContext);
   return (
-    <>
-      <Input dispatch={dispatch} />
-      <div>
-        {todo.map((task, index) => (
-          <Task key={index} index={index} task={task} dispatch={dispatch} />
-        ))}
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Todo />} />
+        <Route path="/todo/:id" element={<TodoItem />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
