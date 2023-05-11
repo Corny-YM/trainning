@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Input = ({ name, index, setIsSelected, dispatch }) => {
+    console.log('hi');
   const [valueInput, setValueInput] = useState(name || "");
   const navigate = useNavigate();
 
@@ -41,4 +42,4 @@ const Input = ({ name, index, setIsSelected, dispatch }) => {
   );
 };
 
-export default Input;
+export default memo(Input);

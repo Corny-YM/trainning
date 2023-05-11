@@ -25,7 +25,7 @@ const Task = ({ task, index, dispatch }) => {
     });
     navigate("/");
   };
-
+  
   const handleClickTask = () => {
     navigate(`/todo/${index}`)
   }
