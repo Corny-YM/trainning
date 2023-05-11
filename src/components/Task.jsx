@@ -1,21 +1,12 @@
 import { useState } from "react";
 import Input from "./Input";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Checkbox from "./Checkbox";
 
 const Task = ({ task, index, dispatch }) => {
   const [isSelected, setIsSelected] = useState(false);
   const navigate = useNavigate();
-
-  const handleUpdateDoneTodo = () => {
-    dispatch({
-      type: "UPDATE_DONE_TODO",
-      payload: {
-        index: index,
-        isDone: task.isDone ? false : true,
-      },
-    });
-    navigate("/");
-  };
+  const { id } = useParams();
 
   const handleDelete = (e) => {
     e.stopPropagation();
@@ -25,18 +16,14 @@ const Task = ({ task, index, dispatch }) => {
     });
     navigate("/");
   };
-  
+
   const handleClickTask = () => {
-    navigate(`/todo/${index}`)
-  }
+    if (id !== index) navigate(`/todo/${index}`);
+  };
 
   return (
     <div onClick={handleClickTask} className="display-flex padding-8">
-      <input
-        checked={task?.isDone}
-        onChange={handleUpdateDoneTodo}
-        type="checkbox"
-      />
+      <Checkbox isDone={task.isDone} index={index} />
       {!isSelected && (
         <div onClick={() => setIsSelected(true)} className="margin-2-8">
           {task?.name}
