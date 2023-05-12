@@ -1,29 +1,17 @@
 import { memo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Input = ({ name, index, setIsSelected, dispatch }) => {
-    console.log('hi');
+const Input = ({ name, id, setIsSelected, onAddTodo, onUpdateNameTodo }) => {
+  console.log("hi");
   const [valueInput, setValueInput] = useState(name || "");
   const navigate = useNavigate();
 
   const handleKeyDown = (e) => {
     if (e.key == "Enter" && valueInput.trim() != "") {
       if (!name) {
-        dispatch({
-          type: "ADD_TODO",
-          payload: {
-            name: valueInput,
-            isDone: false,
-          },
-        });
+        onAddTodo(valueInput);
       } else {
-        dispatch({
-          type: "UPDATE_NAME_TODO",
-          payload: {
-            index: index,
-            name: valueInput,
-          },
-        });
+        onUpdateNameTodo(id, valueInput);
         setIsSelected(false);
         navigate("/");
       }
@@ -42,4 +30,9 @@ const Input = ({ name, index, setIsSelected, dispatch }) => {
   );
 };
 
-export default memo(Input);
+
+function arePropsEquals(preProps, nextProps) {
+  return preProps.name === nextProps.name && preProps.id === nextProps.id;
+}
+
+export default memo(Input, arePropsEquals);

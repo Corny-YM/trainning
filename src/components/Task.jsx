@@ -1,45 +1,56 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import Input from "./Input";
-import { useNavigate, useParams } from "react-router-dom";
+
 import Checkbox from "./Checkbox";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Task = ({ task, index, dispatch }) => {
+const Task = ({
+  task,
+  onDelete,
+  onAddTodo,
+  onUpdateNameTodo,
+  onUpdateDoneTodo,
+}) => {
+  console.log("re-render TASK");
   const [isSelected, setIsSelected] = useState(false);
-  const navigate = useNavigate();
   const { id } = useParams();
+  const navigate = useNavigate();
+  const {paramId} = useParams();
 
-  const handleDelete = (e) => {
+  const handleClickTask = (e) => {
     e.stopPropagation();
-    dispatch({
-      type: "DELETE_TODO",
-      payload: index,
-    });
-    navigate("/");
-  };
-
-  const handleClickTask = () => {
-    if (id !== index) navigate(`/todo/${index}`);
+    if (id !== task.id) navigate(`/todo/${task.id}`);
+    setIsSelected(true);
   };
 
   return (
-    <div onClick={handleClickTask} className="display-flex padding-8">
-      <Checkbox isDone={task.isDone} index={index} />
+    <div className="display-flex padding-8">
+      <Checkbox
+        isDone={task.isDone}
+        id={task.id}
+        onUpdateDoneTodo={onUpdateDoneTodo}
+      />
       {!isSelected && (
-        <div onClick={() => setIsSelected(true)} className="margin-2-8">
-          {task?.name}
+        <div onClick={handleClickTask} className="margin-2-8">
+          {task.name}
         </div>
       )}
       {isSelected && (
         <Input
           name={task?.name}
-          index={index}
+          id={task?.id}
           setIsSelected={setIsSelected}
-          dispatch={dispatch}
+          onAddTodo={onAddTodo}
+          onUpdateNameTodo={onUpdateNameTodo}
         />
       )}
-      <button onClick={handleDelete}>X</button>
+      <button onClick={(e) => onDelete(e, task.id, paramId)}>X</button>
     </div>
   );
 };
 
-export default Task;
+function arePropsEquals(preProps, nextProps) {
+  return preProps.task === nextProps.task;
+}
+
+export default memo(Task, arePropsEquals);

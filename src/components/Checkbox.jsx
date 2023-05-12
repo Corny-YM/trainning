@@ -1,25 +1,21 @@
-import { memo, useContext } from "react";
-import { AppContext } from "../context/AppContext";
-import { useNavigate } from "react-router-dom";
+import { memo } from "react";
+import { useParams } from "react-router-dom";
 
-const Checkbox = ({ isDone, index }) => {
-  console.log("re-render");
-  const navigate = useNavigate();
-  const { dispatch } = useContext(AppContext);
+const Checkbox = ({ isDone, id, onUpdateDoneTodo }) => {
+  console.log("re-render check-box");
+  const { paramId } = useParams();
 
-  const handleUpdateDoneTodo = () => {
-    dispatch({
-      type: "UPDATE_DONE_TODO",
-      payload: {
-        index: index,
-        isDone: isDone ? false : true,
-      },
-    });
-    navigate("/");
-  };
   return (
-    <input checked={isDone} onChange={handleUpdateDoneTodo} type="checkbox" />
+    <input
+      checked={isDone}
+      onChange={() => onUpdateDoneTodo(id, isDone, paramId)}
+      type="checkbox"
+    />
   );
 };
 
-export default memo(Checkbox);
+function arePropsEquals(preProps, nextProps) {
+  return preProps.isDone === nextProps.isDone && preProps.id === nextProps.id;
+}
+
+export default memo(Checkbox, arePropsEquals);

@@ -5,12 +5,15 @@ const arrTask = [
   {
     name: "Read work emails",
     isDone: true,
+    id: 1,
   },
   {
+    id: 2,
     name: "Call Amy",
     isDone: true,
   },
   {
+    id: 3,
     name: "Draft new website homepage",
     isDone: false,
   },
@@ -31,7 +34,7 @@ const AppContextProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("todo", JSON.stringify(state));
- }, [state]);
+  }, [state]);
 
   return (
     <AppContext.Provider value={{ todo: state.todo, dispatch }}>

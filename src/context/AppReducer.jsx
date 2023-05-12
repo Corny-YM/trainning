@@ -6,22 +6,32 @@ const AppReducer = (state, action) => {
         todo: [...state.todo, action.payload],
       };
     case "DELETE_TODO":
-      const restTodo = [...state.todo];
-      restTodo.splice(action.payload, 1);
       return {
-        todo: restTodo,
+        todo: state.todo.filter((todo) => todo.id !== action.payload),
       };
     case "UPDATE_NAME_TODO":
-      const updateNameTodo = [...state.todo];
-      updateNameTodo[action.payload.index].name = action.payload.name;
       return {
-        todo: updateNameTodo,
+        todo: state.todo.map((task) => {
+          if (task.id === action.payload.id) {
+            return {
+              ...task,
+              name: action.payload.name,
+            };
+          }
+          return task
+        }),
       };
     case "UPDATE_DONE_TODO":
-      const updateTodo = [...state.todo];
-      updateTodo[action.payload.index].isDone = action.payload.isDone;
       return {
-        todo: updateTodo,
+        todo: state.todo.map((task) => {
+          if (task.id === action.payload.id) {
+            return {
+              ...task,
+              isDone: action.payload.isDone,
+            };
+          }
+          return task
+        }),
       };
     default:
       return state;
