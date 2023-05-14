@@ -4,15 +4,10 @@ import TopbarSearchField from "./Topbar/TopbarSearchField";
 import TopbarSecondaryMenu from "./Topbar/TopbarSecondaryMenu";
 import SearchResultActionList from "./Lists/SearchResultActionList";
 
-const logo = {
-  width: 124,
-  topBarSource:
-    "https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-color.svg?6215648040070010999",
-  url: "#",
-  accessibilityLabel: "Jaded Pixel",
-};
+
 
 const Header = () => {
+  console.log('re-render HEADER');
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -42,7 +37,7 @@ const Header = () => {
     console.log("toggle navigation visibility");
   }, []);
 
-  const topBarMarkup = (
+  return (
     <TopBar
       showNavigationToggle
       searchResultsVisible={isSearchActive}
@@ -68,12 +63,6 @@ const Header = () => {
       onSearchResultsDismiss={handleSearchResultsDismiss}
       onNavigationToggle={handleNavigationToggle}
     />
-  );
-
-  return (
-    <div>
-      <Frame topBar={topBarMarkup} logo={logo} />
-    </div>
   );
 };
 
