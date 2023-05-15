@@ -4,10 +4,8 @@ import TopbarSearchField from "./Topbar/TopbarSearchField";
 import TopbarSecondaryMenu from "./Topbar/TopbarSecondaryMenu";
 import SearchResultActionList from "./Lists/SearchResultActionList";
 
-
-
 const Header = () => {
-  console.log('re-render HEADER');
+  console.log("re-render HEADER");
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);

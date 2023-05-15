@@ -8,6 +8,7 @@ const TopbarSecondaryMenu = ({
   isSecondaryMenuOpen: boolean;
   toggleIsSecondaryMenuOpen: any;
 }) => {
+  console.log("re-render SECONDARY MENU");
   return (
     <TopBar.Menu
       activatorContent={
@@ -30,4 +31,11 @@ const TopbarSecondaryMenu = ({
   );
 };
 
-export default TopbarSecondaryMenu;
+const arePropsEqual = (prevProps: any, nextProps: any) => {
+  return (
+    prevProps.isSecondaryMenuOpen === nextProps.isSecondaryMenuOpen &&
+    prevProps.toggleIsSecondaryMenuOpen === nextProps.toggleIsSecondaryMenuOpen
+  );
+};
+
+export default memo(TopbarSecondaryMenu, arePropsEqual);

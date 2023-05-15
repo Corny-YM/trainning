@@ -1,5 +1,4 @@
 import { TopBar } from "@shopify/polaris";
-import React from "react";
 
 const TopbarSearchField = ({
   searchValue,
@@ -8,7 +7,7 @@ const TopbarSearchField = ({
   searchValue: string;
   onSearchChange: any;
 }) => {
-  console.log('re-render search field');
+  console.log("re-render SEARCH FIELD");
   return (
     <TopBar.SearchField
       onChange={onSearchChange}
@@ -19,4 +18,11 @@ const TopbarSearchField = ({
   );
 };
 
-export default TopbarSearchField;
+const arePropsEqual = (prevProps: any, nextProps: any) => {
+  return (
+    prevProps.searchValue === nextProps.searchValue &&
+    prevProps.onSearchChange === nextProps.onSearchChange
+  );
+};
+
+export default memo(TopbarSearchField, arePropsEqual);

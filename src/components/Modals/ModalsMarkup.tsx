@@ -1,5 +1,4 @@
 import { FormLayout, Modal, TextField } from "@shopify/polaris";
-import React from "react";
 
 const ModalsMarkup = ({
   isShowModal,
@@ -50,4 +49,11 @@ const ModalsMarkup = ({
   );
 };
 
-export default ModalsMarkup;
+const arePropsEqual = (prevProps: any, nextProps: any) => {
+  return (
+    prevProps.isShowModal === nextProps.isShowModal &&
+    prevProps.toggleModalActive === nextProps.toggleModalActive
+  );
+};
+
+export default memo(ModalsMarkup, arePropsEqual);

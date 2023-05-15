@@ -8,6 +8,7 @@ const TopbarUserMenu = ({
   isUserMenuOpen: boolean;
   toggleIsUserMenuOpen: any;
 }) => {
+  console.log("re-render USER MENU");
   return (
     <TopBar.UserMenu
       actions={[
@@ -27,4 +28,11 @@ const TopbarUserMenu = ({
   );
 };
 
-export default TopbarUserMenu;
+const arePropsEqual = (prevProps: any, nextProps: any) => {
+  return (
+    prevProps.isUserMenuOpen === nextProps.isUserMenuOpen &&
+    prevProps.toggleIsUserMenuOpen === nextProps.toggleIsUserMenuOpen
+  );
+};
+
+export default memo(TopbarUserMenu, arePropsEqual);
