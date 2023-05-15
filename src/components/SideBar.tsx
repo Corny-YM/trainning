@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Navigation } from "@shopify/polaris";
 import {
   ArrowLeftMinor,
@@ -5,8 +6,8 @@ import {
   OrdersMajor,
   ConversationMinor,
 } from "@shopify/polaris-icons";
-import ModalsMarkup from "./Modals/ModalsMarkup";
-import { useNavigate } from "react-router-dom";
+
+import ModalsMarkup from "components/Modals/ModalsMarkup";
 
 const SideBar = () => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -28,7 +29,7 @@ const SideBar = () => {
           {
             label: "Back to Shopify",
             icon: ArrowLeftMinor,
-            onClick: handleClickNavigation
+            onClick: handleClickNavigation,
           },
         ]}
       />

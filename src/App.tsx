@@ -1,13 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Account from "./components/Account";
-import Orders from "./components/Orders";
-import Header from "./components/Header";
-import SideBar from "./components/SideBar";
-
-import "./App.css";
 import { Frame, HorizontalGrid } from "@shopify/polaris";
 
-import { logo } from "./components/Logo";
+import "./App.css";
+import { logo } from "components/Logo";
+import Account from "components/Account";
+import Orders from "components/Orders";
+import Header from "components/Header";
+import SideBar from "components/SideBar";
 
 const App = () => {
   return (

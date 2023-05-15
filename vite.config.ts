@@ -7,7 +7,8 @@ import AutoImport from "unplugin-auto-import/vite";
 export default defineConfig({
   resolve: {
     alias: {
-      '@' : path.resolve(__dirname, './src'),
+      "@": path.resolve(__dirname, "./src"),
+      components: path.resolve(__dirname, "./src/components"),
     },
   },
   plugins: [
@@ -15,10 +16,11 @@ export default defineConfig({
     AutoImport({
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-        /\.vue$/, /\.vue\?vue/, // .vue
+        /\.vue$/,
+        /\.vue\?vue/, // .vue
         /\.md$/, // .md
       ],
-      imports: ['react'],
+      imports: ["react"],
       dirs: ["./components/**"],
       cache: true,
     }),

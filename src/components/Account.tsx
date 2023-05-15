@@ -7,7 +7,7 @@ import {
   Page,
   TextField,
 } from "@shopify/polaris";
-import { logoContextualSave } from "./Logo";
+import { logoContextualSave } from "components/Logo";
 
 const Account = () => {
   const defaultValue = useRef({

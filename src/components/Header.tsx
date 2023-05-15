@@ -1,8 +1,8 @@
 import { Frame, TopBar } from "@shopify/polaris";
-import TopbarUserMenu from "./Topbar/TopbarUserMenu";
-import TopbarSearchField from "./Topbar/TopbarSearchField";
-import TopbarSecondaryMenu from "./Topbar/TopbarSecondaryMenu";
-import SearchResultActionList from "./Lists/SearchResultActionList";
+import TopbarUserMenu from "components/Topbar/TopbarUserMenu";
+import TopbarSearchField from "components/Topbar/TopbarSearchField";
+import TopbarSecondaryMenu from "components/Topbar/TopbarSecondaryMenu";
+import SearchResultActionList from "components/Lists/SearchResultActionList";
 
 const Header = () => {
   console.log("re-render HEADER");
