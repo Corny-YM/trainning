@@ -1,23 +1,33 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Frame, HorizontalGrid } from "@shopify/polaris";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Suspense } from "react";
 
-import "./App.css";
-import { logo } from "components/Logo";
-import Account from "components/Account";
-import Orders from "components/Orders";
-import Header from "components/Header";
-import SideBar from "components/SideBar";
+import "@/App.css";
+import { Frame, Loading } from "@shopify/polaris";
+
+import { AuthContext } from "@/context/AuthContext";
+
+const Login = lazy(() => import("@/pages/Login"));
+const LayoutApp = lazy(() => import("@/pages/LayoutApp"));
 
 const App = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <BrowserRouter>
-      <div className="app">
-        <Frame topBar={<Header />} navigation={<SideBar />} logo={logo}>
-          <Routes>
-            <Route path="/" element={null} />
-            <Route path="/dashboard" element={<Account />} />
-            <Route path="/orders" element={<Orders />} />
-          </Routes>
+      <div className="app h-100">
+        <Frame>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              <Route
+                path="/*"
+                element={user ? <LayoutApp /> : <Navigate to={"/login"} />}
+              />
+              <Route
+                path="/login/*"
+                element={!user ? <Login /> : <Navigate to={"/"} />}
+              />
+            </Routes>
+          </Suspense>
         </Frame>
       </div>
     </BrowserRouter>

@@ -25,4 +25,13 @@ export default defineConfig({
       cache: true,
     }),
   ],
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://memoryzone.aecomapp.com",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });

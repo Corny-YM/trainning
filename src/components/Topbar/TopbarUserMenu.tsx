@@ -1,5 +1,8 @@
 import { TopBar } from "@shopify/polaris";
-import { ArrowLeftMinor } from "@shopify/polaris-icons";
+import { LogOutMinor } from "@shopify/polaris-icons";
+
+import { AuthContext } from "@/context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const TopbarUserMenu = ({
   isUserMenuOpen,
@@ -8,20 +11,35 @@ const TopbarUserMenu = ({
   isUserMenuOpen: boolean;
   toggleIsUserMenuOpen: any;
 }) => {
-  console.log("re-render USER MENU");
+  const { user, dispatch }: any = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("expires_in");
+    dispatch({type: "LOGOUT"})
+    navigate("/login");
+  };
+
   return (
     <TopBar.UserMenu
       actions={[
         {
-          items: [{ content: "Back to Shopify", icon: ArrowLeftMinor }],
+          items: [
+            {
+              content: "Log out",
+              icon: LogOutMinor,
+              onAction: handleLogout,
+            },
+          ],
         },
         {
-          items: [{ content: "Community forums" }],
+          items: [{ content: "User information" }],
         },
       ]}
-      name="Corny"
-      detail="Thế Anh"
-      initials="C"
+      name={user.name}
+      detail={user.role}
+      initials={user.name[0]}
       open={isUserMenuOpen}
       onToggle={toggleIsUserMenuOpen}
     />

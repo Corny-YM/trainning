@@ -7,7 +7,6 @@ const TopbarSearchField = ({
   searchValue: string;
   onSearchChange: any;
 }) => {
-  console.log("re-render SEARCH FIELD");
   return (
     <TopBar.SearchField
       onChange={onSearchChange}

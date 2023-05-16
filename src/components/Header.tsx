@@ -5,7 +5,6 @@ import TopbarSecondaryMenu from "components/Topbar/TopbarSecondaryMenu";
 import SearchResultActionList from "components/Lists/SearchResultActionList";
 
 const Header = () => {
-  console.log("re-render HEADER");
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);

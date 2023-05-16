@@ -8,7 +8,6 @@ const TopbarSecondaryMenu = ({
   isSecondaryMenuOpen: boolean;
   toggleIsSecondaryMenuOpen: any;
 }) => {
-  console.log("re-render SECONDARY MENU");
   return (
     <TopBar.Menu
       activatorContent={
