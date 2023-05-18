@@ -6,13 +6,14 @@ import Orders from "components/Orders";
 import Header from "components/Header";
 import SideBar from "components/SideBar";
 import DashBoard from "components/DashBoard";
+import DashBoardTest from "@/components/Dashboard/DashBoardTest";
 
 const LayoutApp = () => {
   return (
     <Frame topBar={<Header />} navigation={<SideBar />} logo={logo}>
       <Routes>
         <Route path="/" element={null} />
-        <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/dashboard" element={<DashBoardTest />} />
         <Route path="/orders" element={<Orders />} />
       </Routes>
     </Frame>

@@ -14,7 +14,7 @@ import {
 import type { IndexFiltersProps, AlphaTabProps } from "@shopify/polaris";
 import { useState, useCallback } from "react";
 
-function IndexTableWithFilteringExample() {
+function Test() {
   const sleep = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
   const [itemStrings, setItemStrings] = useState([
@@ -364,3 +364,5 @@ function IndexTableWithFilteringExample() {
     }
   }
 }
+
+export default Test;
