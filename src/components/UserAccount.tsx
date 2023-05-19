@@ -9,7 +9,7 @@ import {
 } from "@shopify/polaris";
 import { logoContextualSave } from "components/Logo";
 
-const Account = () => {
+const UserAccount = () => {
   const defaultValue = useRef({
     name: "Nguyễn Thế Anh",
     email: "vietcong1508@gmail.com",
@@ -47,11 +47,11 @@ const Account = () => {
 
   return (
     <>
-      <Page title="Account">
+      <Page title="User Account">
         <Layout>
           <Layout.AnnotatedSection
-            title="Account details"
-            description="Jaded Pixel will use this as your account information."
+            title="User account details"
+            description="Jaded Pixel will use this as your UserAccount information."
           >
             <AlphaCard>
               <FormLayout>
@@ -93,4 +93,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default UserAccount;

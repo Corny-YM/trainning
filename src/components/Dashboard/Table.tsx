@@ -3,33 +3,27 @@ import { IndexTable, Loading, useIndexResourceState } from "@shopify/polaris";
 import TableRows from "./TableRows";
 import { useQuery } from "@tanstack/react-query";
 
+const resourceName = {
+  singular: "account",
+  plural: "accounts",
+};
+
 const Table = () => {
   // TanStack
-  const accountQuery = useQuery({
+  const accountsQuery = useQuery({
     queryKey: ["accounts"],
     queryFn: () => getAccounts(),
   });
 
-  const [accounts, setAccounts] = useState([]);
-
-  const resourceName = {
-    singular: "order",
-    plural: "orders",
-  };
-
-  useEffect(() => {
-    setAccounts(accountQuery.data);
-  }, [accountQuery.isFetching]);
-
   const { selectedResources, allResourcesSelected, handleSelectionChange } =
-    useIndexResourceState(accounts);
+    useIndexResourceState(accountsQuery.data);
 
   return (
     <>
-      {accountQuery.isFetching && <Loading />}
+      {accountsQuery.isFetching && <Loading />}
       <IndexTable
         resourceName={resourceName}
-        itemCount={accounts?.length}
+        itemCount={accountsQuery.data?.length || 0}
         selectedItemsCount={
           allResourcesSelected ? "All" : selectedResources.length
         }
@@ -41,7 +35,10 @@ const Table = () => {
           { title: "Ngày tạo" },
         ]}
       >
-        <TableRows accounts={accounts} selectedResources={selectedResources} />
+        <TableRows
+          accounts={accountsQuery.data}
+          selectedResources={selectedResources}
+        />
       </IndexTable>
     </>
   );
