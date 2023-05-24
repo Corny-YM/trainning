@@ -35,12 +35,41 @@
   align-items: center;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+.cursor-pointer:hover {
+  background-color: var(--p-color-bg-strong-hover);
+}
+
+.border-radius-4 {
+  border-radius: 4px;
+}
+
+.margin-left-8 {
+  margin-left: 8px;
+}
 .margin-right-16 {
   margin-right: 16px;
+}
+.margin-left-16 {
+  margin-left: 16px;
 }
 .margin-top-16 {
   margin-top: 16px;
 }
 .margin-bottom-16 {
   margin-bottom: 16px;
+}
+
+.padding-6 {
+  padding: 6px;
+}
+
+.padding-16-32 {
+  padding: 16px 32px;
+}
+
+.padding-16-24 {
+  padding: 16px 24px;
 }

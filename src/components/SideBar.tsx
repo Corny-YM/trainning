@@ -5,8 +5,8 @@ import {
   HomeMajor,
   OrdersMajor,
   ConversationMinor,
+  DiscountsMajor
 } from "@shopify/polaris-icons";
-
 import ModalsMarkup from "components/Modals/ModalsMarkup";
 
 const SideBar = () => {
@@ -48,6 +48,11 @@ const SideBar = () => {
             label: "Jaded Pixel Orders",
             icon: OrdersMajor,
             onClick: () => handleClickNavigation("orders"),
+          },
+          {
+            label: "Vouchers",
+            icon: DiscountsMajor,
+            onClick: () => handleClickNavigation("vouchers"),
           },
         ]}
         action={{
