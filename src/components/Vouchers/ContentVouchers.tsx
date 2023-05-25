@@ -1,4 +1,4 @@
-import { AlphaCard, Tabs } from "@shopify/polaris";
+import { AlphaCard, Page, Tabs } from "@shopify/polaris";
 import Table from "../Table";
 
 const tabs = [
